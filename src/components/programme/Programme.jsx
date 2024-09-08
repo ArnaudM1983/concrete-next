@@ -49,7 +49,7 @@ const Programme = () => {
   const timesOptions = Array.from(new Set(concerts.map(concert => new Date(concert.start_date).getHours().toString())));
 
   return (
-    <div className={styles.container}>
+    <div id="programme" className={styles.container}>
       <h2 className={styles.title}>PROGRAMMATION</h2>
 
       <div className={styles.filter}>
@@ -89,20 +89,27 @@ const Programme = () => {
 
       {/* Programmation filtrée */}
       <div className={styles.cardContainer}>
-        {filteredConcerts.map(concert => (
-          <Link key={concert.id} href={`/artistes/${concert.id}`} className={styles.link}>
-            <div className={styles.card}>
-              <div className={styles.imageContainer}>
-                <img src="/groupe.jpg" alt="" className={styles.image} />
+        {filteredConcerts.map(concert => {
+          const dateDetails = concert.start_date_details; // Récupérez les détails de la date
+          const formattedDate = `${dateDetails.day}/${dateDetails.month}/${dateDetails.year}`; // Formatez la date
+          const formattedTime = `${String(dateDetails.hour).padStart(2, '0')}:${String(dateDetails.minutes).padStart(2, '0')}`; // Formatez l'heure avec les heures et les minutes
+
+          return (
+            <Link key={concert.id} href={`/artistes/${concert.id}`} className={styles.link}>
+              <div className={styles.card}>
+                <div className={styles.imageContainer}>
+                  <img src="/groupe.jpg" alt="" className={styles.image} />
+                </div>
+                <div className={styles.textContainer}>
+                  <h2 className={styles.titleCard}>{concert.title}</h2>
+                  <p className={styles.location}>{concert.venue.venue}</p>
+                  <p>{formattedDate}</p> 
+                  <p>{formattedTime}</p>
+                </div>
               </div>
-              <div className={styles.textContainer}>
-                <h2 className={styles.titleCard}>{concert.title}</h2>
-                <p>{concert.venue.venue}</p>
-                <p>Date et Heure: {concert.start_date}</p>
-              </div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          );
+        })}
       </div>
     </div>
   );

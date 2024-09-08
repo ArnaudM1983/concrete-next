@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './artistes.module.css'
 
 
-const Artiste = () => {
+const Artistes = () => {
   return (
     <div className={styles.container}>
       <img src="/groupe.jpg" alt="" className={styles.artistImage} />
@@ -19,4 +19,4 @@ const Artiste = () => {
   )
 }
 
-export default Artiste
+export default Artistes
