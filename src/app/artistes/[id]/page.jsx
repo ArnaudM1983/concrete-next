@@ -1,15 +1,15 @@
-"use client"; // Assurez-vous que ce fichier est un composant client
+"use client"; 
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation'; // Utilisez useParams de next/navigation
+import { useParams } from 'next/navigation'; 
 import styles from '../artistes.module.css';
 import Link from 'next/link';
 
 const Artistes = () => {
-  const { id } = useParams(); // Utilisez useParams pour accéder aux paramètres d'URL
-  const [artistDetails, setArtistDetails] = useState(null); // Initialiser l'état pour les détails de l'artiste
+  const { id } = useParams(); 
+  const [artistDetails, setArtistDetails] = useState(null); 
 
   useEffect(() => {
-    if (id) { // Vérifiez que l'ID est disponible avant de faire une requête
+    if (id) { // Vérifie que l'ID est disponible avant de faire une requête
       fetch(`http://cjezdhm.cluster029.hosting.ovh.net/wp-json/tribe/events/v1/events/${id}`)
         .then(response => response.json())
         .then(data => setArtistDetails(data))
@@ -17,9 +17,9 @@ const Artistes = () => {
     }
   }, [id]); // Déclenchement de l'effet lorsqu'il y a un changement dans l'ID
 
-  if (!artistDetails) return <div>Loading...</div>; // Afficher un état de chargement tant que les détails ne sont pas chargés
+  if (!artistDetails) return <div>Loading...</div>; // Affiche un état de chargement tant que les détails ne sont pas chargés
 
-  // Formattage de la date et de l'heure
+  // Formatage de la date et de l'heure
   const dateDetails = artistDetails.start_date_details;
   const formattedDate = `${dateDetails.day}/${dateDetails.month}/${dateDetails.year}`;
   const formattedTime = `${String(dateDetails.hour).padStart(2, '0')}:${String(dateDetails.minutes).padStart(2, '0')}`;
