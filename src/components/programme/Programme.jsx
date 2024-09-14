@@ -13,15 +13,23 @@ const Programme = () => {
   useEffect(() => {
     const categories = 'concert,animation';
     const perPage = 25;
-
+  
+    // Ajoute un console.log pour voir les paramètres envoyés
+    console.log(`Fetching events with categories: ${categories} and perPage: ${perPage}`);
+  
     fetch(`http://cjezdhm.cluster029.hosting.ovh.net/wp-json/tribe/events/v1/events?categories=${categories}&per_page=${perPage}`)
-      .then(response => response.json())
+      .then(response => {
+        console.log('Response status:', response.status);  // Vérifier le statut de la réponse
+        return response.json();
+      })
       .then(data => {
+        console.log('Fetched data:', data);  // Log des données récupérées
         setConcerts(data.events);
         setFilteredConcerts(data.events);
       })
       .catch(error => console.error('Erreur lors de la récupération des événements :', error));
   }, []);
+  
 
   useEffect(() => {
     let filteredData = concerts;
