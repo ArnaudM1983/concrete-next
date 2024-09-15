@@ -17,7 +17,7 @@ const Programme = () => {
     // Ajoute un console.log pour voir les paramètres envoyés
     console.log(`Fetching events with categories: ${categories} and perPage: ${perPage}`);
   
-    fetch(`http://cjezdhm.cluster029.hosting.ovh.net/wp-json/tribe/events/v1/events?categories=${categories}&per_page=${perPage}`)
+    fetch(`https://cjezdhm.cluster029.hosting.ovh.net/wp-json/tribe/events/v1/events?categories=${categories}&per_page=${perPage}`)
       .then(response => {
         console.log('Response status:', response.status);  // Vérifier le statut de la réponse
         return response.json();
