@@ -8,7 +8,7 @@ const Map = () => {
     <div id="map" className={styles.container}>
       <iframe
         title="Carte du Festival"
-        src="http://cjezdhm.cluster029.hosting.ovh.net/map/"
+        src="https://cjezdhm.cluster029.hosting.ovh.net/map/"
         width="100%"
         height="100%"
         frameBorder="0"
