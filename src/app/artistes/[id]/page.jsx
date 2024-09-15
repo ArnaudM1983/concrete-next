@@ -10,7 +10,7 @@ const Artistes = () => {
 
   useEffect(() => {
     if (id) { // Vérifie que l'ID est disponible avant de faire une requête
-      fetch(`http://cjezdhm.cluster029.hosting.ovh.net/wp-json/tribe/events/v1/events/${id}`)
+      fetch(`https://cjezdhm.cluster029.hosting.ovh.net/wp-json/tribe/events/v1/events/${id}`)
         .then(response => response.json())
         .then(data => setArtistDetails(data))
         .catch(error => console.error('Erreur lors de la récupération des détails de l\'artiste :', error));
